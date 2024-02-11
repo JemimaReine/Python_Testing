@@ -9,6 +9,9 @@
 <body>
     <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
 
+    <!-- Bouton pour afficher les points de tous les clubs -->
+    <a href="{{url_for('pointsDisplay')}}">Afficher les points de tous les clubs</a>
+
     {% with messages = get_flashed_messages()%}
     {% if messages %}
     <ul>
@@ -26,7 +29,7 @@
             Date: {{comp['date']}}</br>
             Number of Places: {{comp['numberOfPlaces']}}
             {%if comp['numberOfPlaces']|int >0%}
-            <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Places</a>
+            <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
             {%endif%}
         </li>
         <hr />
