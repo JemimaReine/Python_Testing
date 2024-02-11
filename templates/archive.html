@@ -1,0 +1,22 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive des compétitions</title>
+</head>
+
+<body>
+    <h1>Archive des compétitions</h1>
+    <ul>
+        {% for competition in competitions %}
+        <li>
+            <h2>{{ competition['name'] }}</h2>
+            <p>Date : {{ competition['date'].strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            <p>Nombre de places : {{ competition['numberOfPlaces'] }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

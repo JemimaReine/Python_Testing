@@ -11,6 +11,8 @@
 
     <!-- Bouton pour afficher les points de tous les clubs -->
     <a href="{{url_for('pointsDisplay')}}">Afficher les points de tous les clubs</a>
+    <!-- Bouton pour afficher la page d'archivage des anciennes compétitions -->
+    <a href="{{ url_for('archive') }}" style="cursor: pointer;">Archive Old Competitions</a>
 
     {% with messages = get_flashed_messages()%}
     {% if messages %}
