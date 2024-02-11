@@ -1,7 +1,7 @@
 import unittest
 from flask import Flask, url_for
 from flask_testing import TestCase
-from server import app
+from server import app  
 
 class TestPurchasePlacesNegativeTickets(TestCase):
 
@@ -14,5 +14,5 @@ class TestPurchasePlacesNegativeTickets(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assert_template_used('welcome.html')
 
-if __name__ == '__main__':
+if __name__ == '_main_':
     unittest.main()
