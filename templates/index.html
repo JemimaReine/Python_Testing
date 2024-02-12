@@ -1,42 +1,137 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUDLFT Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"] {
+            width: calc(100% - 18px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #f90;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f90;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <h1>Welcome to the GUDLFT Registration Portal!</h1>
-    Please enter your secretary email to continue:
-    <form action="showSummary" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="" />
-        <button type="submit">Enter</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to the GUDLFT Registration Portal!</h1>
 
-    <!-- Tableau affichant le nombre de points de tous les clubs -->
-    <table>
-        <tr>
-            <th>Club</th>
-            <th>Points</th>
-        </tr>
-        {% for club in clubs %}
-        <tr>
-            <td>{{ club['name'] }}</td>
-            <td>{{ club['points'] }}</td>
-        </tr>
+        <!-- Messages d'erreur ou de succès -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="card alert-{{ 'danger' if category == 'error' else 'success' }}">
+            {{ message }}
+        </div>
         {% endfor %}
-    </table>
+        {% endif %}
+        {% endwith %}
+
+        <!-- Formulaire de saisie de l'email -->
+        <div class="card">
+            <p>Please enter your secretary email to continue:</p>
+            <form action="showSummary" method="post">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" />
+                <button type="submit">Enter</button>
+            </form>
+        </div>
+
+        <!-- Tableau affichant le nombre de points de tous les clubs -->
+        <table>
+            <tr>
+                <th>Club</th>
+                <th>Points</th>
+            </tr>
+            {% for club in clubs %}
+            <tr>
+                <td>{{ club['name'] }}</td>
+                <td>{{ club['points'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 
 </html>
