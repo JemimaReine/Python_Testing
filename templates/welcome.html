@@ -1,44 +1,93 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary | GUDLFT Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #FF851B;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #0074D9;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
+    <div class="navbar">
+        <h2>Welcome, {{club['email']}}</h2>
+        <a href="{{url_for('logout')}}">Logout</a>
+        <a href="{{url_for('pointsDisplay')}}">Points de tous les clubs</a>
+        <a href="{{ url_for('archive') }}">Archiver les anciennes compétitions</a>
+    </div>
 
-    <!-- Bouton pour afficher les points de tous les clubs -->
-    <a href="{{url_for('pointsDisplay')}}">Afficher les points de tous les clubs</a>
-    <!-- Bouton pour afficher la page d'archivage des anciennes compétitions -->
-    <a href="{{ url_for('archive') }}" style="cursor: pointer;">Archive Old Competitions</a>
-
-    {% with messages = get_flashed_messages()%}
+    {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
         {% for message in messages %}
         <li>{{message}}</li>
         {% endfor %}
     </ul>
-    {% endif%}
-    Points available: {{club['points']}}
-    <h3>Competitions:</h3>
+    {% endif %}
+    Points disponibles : {{club['points']}}
+    <h3>Compétitions :</h3>
     <ul>
-        {% for comp in competitions%}
+        {% for comp in competitions %}
         <li>
             {{comp['name']}}<br />
-            Date: {{comp['date']}}</br>
-            Number of Places: {{comp['numberOfPlaces']}}
-            {%if comp['numberOfPlaces']|int >0%}
-            <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
-            {%endif%}
+            Date : {{comp['date']}}<br />
+            Nombre de places : {{comp['numberOfPlaces']}}
+            {% if comp['numberOfPlaces']|int > 0 %}
+            <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Réserver des places</a>
+            {% endif %}
         </li>
         <hr />
         {% endfor %}
     </ul>
-    {%endwith%}
-
+    {% endwith %}
 </body>
 
 </html>

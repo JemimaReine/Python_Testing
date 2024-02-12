@@ -1,9 +1,60 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archive des compétitions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #0074D9;
+        }
+
+        p {
+            color: #555;
+        }
+         .btn {
+            background-color: #FFA500; /* Orange */
+            color: #fff; /* Blanc */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #FF7F50; /* Orange clair */
+        }
+    </style>
 </head>
 
 <body>
@@ -17,6 +68,7 @@
         </li>
         {% endfor %}
     </ul>
+    <a href="/" class="btn">Retour</a>
 </body>
 
 </html>

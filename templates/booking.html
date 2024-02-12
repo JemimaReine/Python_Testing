@@ -1,17 +1,67 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking for {{competition['name']}} || GUDLFT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #0074D9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #2ECC40;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>{{competition['name']}}</h2>
-    Places available: {{competition['numberOfPlaces']}}
-    <form action="/purchasePlaces" method="post">
-        <input type="hidden" name="club" value="{{club['name']}}">
-        <input type="hidden" name="competition" value="{{competition['name']}}">
-        <label for="places">How many places?</label><input type="number" name="places" id=""/>
-        <button type="submit">Book</button>
-    </form>
+    <div class="card">
+        <h2>{{competition['name']}}</h2>
+        <p>Places available: {{competition['numberOfPlaces']}}</p>
+        <form action="/purchasePlaces" method="post">
+            <input type="hidden" name="club" value="{{club['name']}}">
+            <input type="hidden" name="competition" value="{{competition['name']}}">
+            <label for="places">How many places?</label>
+            <input type="number" name="places" id="places" required>
+            <button type="submit">Book</button>
+        </form>
+    </div>
 </body>
+
 </html>
